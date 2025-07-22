@@ -570,6 +570,21 @@
             position: relative;
             overflow: hidden;
         }
+        
+        .cards-section .container {
+            max-width: 100%;
+            padding: 0 15px;
+        }
+        
+        .cards-section .row {
+            margin: 0 -15px;
+        }
+        
+        .cards-section [class*="col-"] {
+            padding: 0 15px;
+            display: flex;
+            align-items: stretch;
+        }
 
         .cards-section::before {
             content: '';
@@ -607,6 +622,9 @@
             transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             z-index: 2;
+            width: 100%;
+            display: flex;
+            align-items: stretch;
         }
 
         .card-container.show {
@@ -625,6 +643,8 @@
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
+            width: 100%;
+            flex: 1;
         }
 
         .card-container.show .birthday-card {
@@ -1152,29 +1172,131 @@
             .hero-content h2 {
                 font-size: 2rem;
             }
+            
+            /* Mobile card improvements */
+            .birthday-card {
+                padding: 25px;
+                margin-bottom: 20px;
+            }
+            
             .photo-card {
-                height: 400px;
+                height: auto;
+                min-height: 400px;
             }
+            
+            .photo-card img {
+                height: 250px;
+                margin-bottom: 20px;
+            }
+            
             .word-card {
-                height: 400px;
+                height: auto;
+                min-height: 350px;
+                padding: 30px 25px;
             }
+            
+            .modern-card-icon {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .modern-card-title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                line-height: 1.4;
+            }
+            
+            .modern-card-text {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .modern-arabic-text {
+                font-size: 1.1rem;
+                line-height: 1.8;
+            }
+            
+            /* Ensure cards stack properly on mobile */
+            .col-lg-4.col-md-6 {
+                max-width: 100% !important;
+                flex: 0 0 100% !important;
+                padding: 0 15px;
+                margin-bottom: 25px;
+            }
+            
+            /* Remove any transforms on mobile for better performance */
+            .card-container {
+                transform: none !important;
+                opacity: 1 !important;
+            }
+            
+            .birthday-card:hover {
+                transform: none !important;
+            }
+            
             .age-title, .facts-title, .cards-title {
-                font-size: 3rem;
+                font-size: 2.5rem;
+                line-height: 1.2;
+                margin-bottom: 20px;
             }
+            
             .age-circle {
                 width: 150px;
                 height: 150px;
             }
+            
             .age-number {
                 font-size: 3rem;
             }
+            
             .facts-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+            
             .age-stats-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 20px;
+            }
+            
+            /* Improve card container for mobile */
+            .cards-section .container {
+                padding: 0 10px;
+            }
+            
+            .cards-section .row {
+                margin: 0 -10px;
+            }
+        }
+        
+        /* Additional mobile improvements for very small screens */
+        @media (max-width: 480px) {
+            .birthday-card {
+                padding: 20px;
+            }
+            
+            .photo-card img {
+                height: 200px;
+            }
+            
+            .modern-card-title {
+                font-size: 1.2rem;
+            }
+            
+            .modern-card-text {
+                font-size: 0.95rem;
+            }
+            
+            .modern-arabic-text {
+                font-size: 1rem;
+            }
+            
+            .age-title, .facts-title, .cards-title {
+                font-size: 2rem;
+            }
+            
+            .cards-section .container {
+                padding: 0 5px;
             }
         }
 
@@ -1442,7 +1564,7 @@
     <section class="cards-section" id="cardsSection" style="display: none;">
         <div class="container">
             <div class="cards-header">
-                <h2 class="cards-title">Love Letters for Menna</h2>
+                <h2 class="cards-title">My Menna</h2>
             </div>
             <div class="row">
                 <!-- Photo Card 1 -->
@@ -1817,7 +1939,7 @@
         function playBackgroundMusic() {
             try {
                 if (!backgroundAudio) {
-                    backgroundAudio = new Audio('audio/b7bk.mp3');
+                    backgroundAudio = new Audio('audio/b7ar.mp3');
                     backgroundAudio.loop = true; // Make the music loop
                     backgroundAudio.volume = 0.5; // Set volume to 50%
                     backgroundAudio.play().then(() => {
